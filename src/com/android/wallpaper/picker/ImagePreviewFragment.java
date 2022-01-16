@@ -533,7 +533,7 @@ public class ImagePreviewFragment extends PreviewFragment {
                 // Scale the mWallpaperSurface based on system zoom's scale so that the wallpaper is
                 // rendered in a larger surface than what preview shows, simulating the behavior of
                 // the actual wallpaper surface.
-                float scale = WallpaperCropUtils.getSystemWallpaperMaximumScale(context);
+                float scale = WallpaperCropUtils.getSystemWallpaperMaximumScale();
                 int origWidth = mWallpaperSurface.getWidth();
                 int width = (int) (origWidth * scale);
                 int origHeight = mWallpaperSurface.getHeight();
