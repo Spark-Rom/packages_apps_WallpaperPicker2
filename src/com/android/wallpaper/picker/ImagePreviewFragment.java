@@ -575,7 +575,7 @@ public class ImagePreviewFragment extends PreviewFragment {
                 // rendered in a larger surface than what preview shows, simulating the behavior of
                 // the actual wallpaper surface and so we can crop it to a size that fits in all
                 // screens.
-                float scale = WallpaperCropUtils.getSystemWallpaperMaximumScale(context);
+                float scale = WallpaperCropUtils.getSystemWallpaperMaximumScale();
                 int origWidth = mWallpaperSurface.getWidth();
                 int origHeight = mWallpaperSurface.getHeight();
 

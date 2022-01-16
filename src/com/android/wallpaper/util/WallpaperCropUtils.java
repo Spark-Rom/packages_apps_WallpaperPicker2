@@ -264,7 +264,7 @@ public final class WallpaperCropUtils {
         float centerY = cropRect.centerY();
         float width = cropRect.width();
         float height = cropRect.height();
-        float systemWallpaperMaxScale = getSystemWallpaperMaximumScale(context);
+        float systemWallpaperMaxScale = getSystemWallpaperMaximumScale();
         float scale = zoomIn ? systemWallpaperMaxScale : 1.0f / systemWallpaperMaxScale;
 
         // Adjust the rect according to the system wallpaper's maximum scale.
@@ -276,8 +276,8 @@ public final class WallpaperCropUtils {
     }
 
     /** Adjust the given Point, representing a size by  systemWallpaperMaxScale. */
-    public static void scaleSize(Context context, Point size) {
-        float systemWallpaperMaxScale = getSystemWallpaperMaximumScale(context);
+    public void scaleSize(Context context, Point size) {
+        float systemWallpaperMaxScale = getSystemWallpaperMaximumScale();
         size.set((int) (size.x * systemWallpaperMaxScale),
                 (int) (size.y * systemWallpaperMaxScale));
     }
@@ -340,10 +340,13 @@ public final class WallpaperCropUtils {
     /**
      * Get the system wallpaper's maximum scale value.
      */
-    public static float getSystemWallpaperMaximumScale(Context context) {
-        return WallpaperManagerCompat.getWallpaperZoomOutMaxScale(context);
-    }
-
+    public static float getSystemWallpaperMaximumScale() {
+        Resources system = Resources.getSystem();
+        return system.getFloat(system.getIdentifier(
+                /* name= */ "config_wallpaperMaxScale",
+                /* defType= */ "dimen",
+                /* defPackage= */ "android"));
+     }
     /**
      * Returns whether layout direction is RTL (or false for LTR). Since native RTL layout support
      * was added in API 17, returns false for versions lower than 17.
